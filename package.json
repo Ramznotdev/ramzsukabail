@@ -105,7 +105,6 @@
     "cache-manager": "latest",
     "chalk": "^4.1.2",
     "fflate": "^0.8.2",
-    "ffmpeg-static": "^5.2.0",
     "gradient-string": "^2.0.2",
     "libphonenumber-js": "^1.13.3",
     "link-preview-js": "latest",
