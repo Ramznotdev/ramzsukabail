@@ -38,6 +38,7 @@
 - [Media Download](#-media-download)
 - [Group Management](#-group-management)
 - [User Operations](#-user-operations)
+- [Check Number Status](#ban-checker)
 - [Privacy Controls](#-privacy-controls)
 - [Chat Operations](#-chat-operations)
 - [Newsletter / Channels](#-newsletter--channels)
@@ -1148,6 +1149,58 @@ await sock.updateBlockStatus(jid, 'unblock')
 
 // Blocklist
 const blocked = await sock.fetchBlocklist()
+```
+
+---
+
+## 💬 Check Number Status
+
+```javascript
+// Via socket instance
+const result = await sock.checkStatusWA('1234567890')
+
+// Or direct import (no socket needed)
+import { checkStatusWA } from '@nexustechpro/baileys'
+const result = await checkStatusWA('1234567890')
+
+// Response examples:
+// Active number
+{ number: '+1234567890', status: 'active', isBanned: false, isNeedOfficialWa: false, banInfo: null }
+
+// Banned number
+{
+  number: '+1234567890',
+  status: 'banned',
+  isBanned: true,
+  isNeedOfficialWa: false,
+  banInfo: {
+    banType: 'temporary',        // 'temporary' | 'permanent'
+    violationType: '2',
+    violationReason: 'Type 2',
+    canAppeal: true,             // false if permanent
+    appealToken: 'xxxxx',
+    banTime: 1716840000,
+    banDate: '2024-05-28T00:00:00.000Z',
+    appealStatus: 'PENDING',
+    appealCreatedAt: '2024-05-27T00:00:00.000Z'
+  }
+}
+
+// Blocked by custom screen (needs official WhatsApp)
+{ number: '+1234567890', status: 'blocked', isBanned: false, isNeedOfficialWa: true, banInfo: null }
+
+// Rate limited
+{ number: '+1234567890', status: 'rate_limited', isBanned: false, isNeedOfficialWa: false, banInfo: null }
+
+// Usage example
+import { checkStatusWA } from '@nexustechpro/baileys'
+const check = await checkStatusWA('1234567890')
+if (check.isBanned) {
+  console.log(`Banned: ${check.banInfo.banType}`)
+  if (check.banInfo.canAppeal) console.log(`Appeal token: ${check.banInfo.appealToken}`)
+} else {
+  console.log(`Status: ${check.status}`)
+}
 ```
 
 ---
