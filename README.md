@@ -941,6 +941,24 @@ await sock.sendMessage('status@broadcast', {
 })
 ```
 
+#### React to a Status
+```javascript
+// Method 1 — via sendMessage
+await sock.sendMessage('status@broadcast', {
+  react: {
+    text: '❤️',
+    key: message.key  // the key of the status message
+  }
+}, {
+  statusJidList: [message.key.participant] // the person who posted the status
+})
+
+// Method 2 — via sendReaction shorthand
+await sock.sendReaction('status@broadcast', message.key, '❤️', {
+  statusJidList: [message.key.participant]
+})
+```
+
 #### Status Mention (tag someone in your story)
 
 Mention specific users or groups in a story. They get a private notification.
