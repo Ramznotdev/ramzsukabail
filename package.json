@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@nexustechpro/baileys",
+  "name": "@Ramznotdev/ramzsukabail",
   "type": "module",
   "version": "2.1.3",
   "description": "Advanced WhatsApp Web API built on Baileys — interactive messages, buttons, carousels, products, events, payments, polls, albums, sticker packs and more.",
@@ -60,9 +60,9 @@
     "javascript",
     "esm"
   ],
-  "homepage": "https://github.com/nexustechpro2/baileys/",
+  "homepage": "https://github.com/Ramznotdev/ramzsukabail",
   "bugs": {
-    "url": "https://github.com/nexustechpro2/baileys/issues"
+    "url": "https://github.com/Ramznotdev/ramzsukabail/issues"
   },
   "repository": {
     "type": "git",
